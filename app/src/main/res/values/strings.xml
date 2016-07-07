@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">CP_JCCD</string>
+    <string name="facebook_application_id" translatable="false">1146365068747469</string>
+
+    <string name="default_upload_website">http://10.0.2.2:80//gpstracker/updatelocation.php</string>
+
+    <string name="tracking_is_off">Tracking is Off</string>
+    <string name="tracking_is_on">Tracking is On</string>
+    <string name="user_needs_to_restart_tracking">Please restart tracking to change the time interval.</string>
+    <string name="reachability_error">Cannot reach the website that you have entered. Did you spell it correctly? Does your website use http or https?</string>
+    <string name="textfields_empty_or_spaces">Please fill in both fields. User names cannot have a space.</string>
+    <string name="google_play_services_unavailable">Please go into Settings > Apps > All and enable Google Play Services.</string>
+    <string name="user_name">user name</string>
+    <string name="upload_website">upload website</string>
+    <string name="upload_frequency">Update website every:</string>
+    <string name="one_minute">1 minute</string>
+    <string name="five_minutes">5 minutes</string>
+    <string name="fifteen_minutes">15 minutes</string>
+    <string name="title_activity_station">StationActivity</string>
+    <string name="title_activity_beat">BeatActivity</string>
+    <string name="title_activity_asm">ASMActivity</string>
+    <string name="title_activity_type">TypeActivity</string>
+    <string name="title_activity_post">PostActivity</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="activityList">
+        <item>BLA</item>
+        <item>OAP</item>
+        <item>D2D</item>
+        <item>JSS</item>
+        <item>Met ASM</item>
+    </string-array>
+    <string name="title_activity_met_asm">MetASMActivity</string>
+</resources>

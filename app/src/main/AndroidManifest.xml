@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.janaagraha.cp_jccd">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_application_id" />
+
+        <activity android:name=".LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CameraActivity" />
+        <activity android:name=".Menu" />
+        <activity android:name=".finish" />
+        <activity android:name=".GpsTrackerActivity" />
+
+        <receiver android:name=".GpsTrackerBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".GpsTrackerAlarmReceiver" />
+
+        <service android:name=".LocationService" />
+
+        <activity
+            android:name=".StationActivity"
+            android:label="@string/title_activity_station"
+            android:parentActivityName=".Menu"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.janaagraha.cp_jccd.Menu" />
+        </activity>
+        <activity
+            android:name=".BeatActivity"
+            android:label="@string/title_activity_beat"
+            android:parentActivityName=".StationActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.janaagraha.cp_jccd.StationActivity" />
+        </activity>
+        <activity
+            android:name=".ASMActivity"
+            android:label="@string/title_activity_asm"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TypeActivity"
+            android:label="@string/title_activity_type"
+            android:parentActivityName=".ASMActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.janaagraha.cp_jccd.ASMActivity" />
+        </activity>
+        <activity
+            android:name=".PostActivity"
+            android:label="@string/title_activity_post"
+            android:parentActivityName=".TypeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.janaagraha.cp_jccd.TypeActivity" />
+        </activity>
+        <activity
+            android:name=".MetASMActivity"
+            android:label="@string/title_activity_met_asm"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+    </application>
+
+</manifest>

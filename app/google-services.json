@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "648527765567",
+    "firebase_url": "https://compol-b0515.firebaseio.com",
+    "project_id": "compol-b0515",
+    "storage_bucket": "compol-b0515.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648527765567:android:824521afb6a7dbca",
+        "android_client_info": {
+          "package_name": "org.janaagraha.cp_jccd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648527765567-8u3m41obiou8dqa8kiaic8ngeooud3ll.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.janaagraha.cp_jccd",
+            "certificate_hash": "8C60DFE8EE06D2A8108FB793845401962A48FED5"
+          }
+        },
+        {
+          "client_id": "648527765567-qrbm7rre3gskk8bmcg2ush0d905ld87d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZbA6GLZOsXur8kjdkrJIrlKQLvtB7QKo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648527765567-qrbm7rre3gskk8bmcg2ush0d905ld87d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
