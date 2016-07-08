@@ -4,34 +4,31 @@ package org.janaagraha.cp_jccd;
  * Created by divyam on 23/6/16.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
- import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.provider.MediaStore;
-        import android.support.annotation.NonNull;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-        import com.google.android.gms.tasks.OnFailureListener;
-        import com.google.android.gms.tasks.OnSuccessListener;
-        import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnPausedListener;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-        import com.google.firebase.storage.UploadTask;
+import com.google.firebase.storage.UploadTask;
 
-        import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 
@@ -58,7 +55,7 @@ public class CameraActivity extends AppCompatActivity{
         setContentView(R.layout.camera_activity);
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-       count_images= prefs.getInt("count_images", 0);
+        count_images= prefs.getInt("count_images", 0);
     }
 
 
@@ -140,7 +137,7 @@ public class CameraActivity extends AppCompatActivity{
             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                 final double progress = 100.0 * (taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
 
-               final ProgressBar mProgress = (ProgressBar) findViewById(R.id.progressBar);
+                final ProgressBar mProgress = (ProgressBar) findViewById(R.id.progressBar);
 
 
                 System.out.println("Upload is " + progress + "% done");
@@ -174,18 +171,18 @@ public class CameraActivity extends AppCompatActivity{
 
         Button p1_button = (Button)findViewById(R.id.upload_pics);
 
-            if (mBitmapToSave == null) {
-                // This activity has no UI of its own. Just start the camera.
-                startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),
-                        REQUEST_CODE_CAPTURE_IMAGE);
-                p1_button.setText("Upload");
-                return;
+        if (mBitmapToSave == null) {
+            // This activity has no UI of its own. Just start the camera.
+            startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),
+                    REQUEST_CODE_CAPTURE_IMAGE);
+            p1_button.setText("Upload");
+            return;
 
-            }
+        }
 
 
-            saveToStorage();
-            mBitmapToSave = null;
+        saveToStorage();
+        mBitmapToSave = null;
         p1_button.setText("Take Pic");
 
 

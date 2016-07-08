@@ -1,6 +1,7 @@
 package org.janaagraha.cp_jccd;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +25,7 @@ public class TypeActivity extends AppCompatActivity {
     public EditText OtherPlan;
     public static RadioButton otherButton;
     public static Spinner activityView;
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
     // final EditText editText = (EditText) findViewById(R.id.editText_other);
 
 
@@ -33,6 +35,8 @@ public class TypeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_type);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
+        ActivityType = prefs.getString("ActivityType",null);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final CheckBox ChainSnatching = (CheckBox) findViewById(R.id.checkBox);
@@ -102,6 +106,9 @@ public class TypeActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(getApplicationContext(), "You have selected " + ActivityType + " and " + Topics.toString(), Toast.LENGTH_LONG).show();
+                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE).edit();
+                editor.putString("ActivityType",ActivityType);
+                editor.commit();
                 Intent intent_to_screen4 = new Intent(v.getContext(),PostActivity.class);
                 startActivity(intent_to_screen4);
             }
