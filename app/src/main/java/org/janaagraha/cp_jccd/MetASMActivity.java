@@ -10,6 +10,8 @@ import android.widget.EditText;
 public class MetASMActivity extends AppCompatActivity {
     public static String PointsDiscussed;
     public EditText editText;
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

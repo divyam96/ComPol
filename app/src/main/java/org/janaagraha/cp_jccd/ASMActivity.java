@@ -1,6 +1,7 @@
 package org.janaagraha.cp_jccd;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ public class ASMActivity extends AppCompatActivity {
     private Cursor asm;
     private Database_ASM db_ASM;
     public EditText editText_officer;
-
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,9 @@ public class ASMActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
+        OfficerName = prefs.getString("OfficerName",null);
+        ASM = prefs.getString("ASM",null);
         editText_officer = (EditText)findViewById(R.id.editText_OfficerName);
 
         Spinner ASMspinner = (Spinner) findViewById(R.id.spinner_ASM);
@@ -45,6 +49,7 @@ public class ASMActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ASM = parent.getItemAtPosition(position).toString();
+
             }
 
             @Override
@@ -58,6 +63,11 @@ public class ASMActivity extends AppCompatActivity {
         OfficerName = editText_officer.getText().toString();
         Toast.makeText(getApplicationContext(), "You have Selected ASM: " + ASM + " and Police officers: " + OfficerName,
                 Toast.LENGTH_LONG).show();
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE).edit();
+        editor.putString("ASM", ASM);
+        editor.commit();
+        editor.putString("OfficerName",OfficerName);
+        editor.commit();
         Intent intent_to_screen3= new Intent(this, TypeActivity.class);
         startActivity(intent_to_screen3);
     }
