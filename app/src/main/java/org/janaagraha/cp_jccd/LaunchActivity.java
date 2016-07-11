@@ -1,12 +1,12 @@
 package org.janaagraha.cp_jccd;
 
-import android.content.SharedPreferences;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
-
-
+import android.app.DownloadManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -18,6 +18,8 @@ public class LaunchActivity extends AppCompatActivity {
 
     boolean GpsFlag;
     public static final String MY_PREFS_NAME = "MyGpsFile";
+    private long enqueue;
+    private DownloadManager dm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +132,14 @@ public void start(View v){
     startGps();
 
 }
+    public void UpdateDatabase(View view){
+        dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        DownloadManager.Request request = new DownloadManager.Request
+                (Uri.parse("https://firebasestorage.googleapis.com/v0/b/sample1-8b561.appspot.com/o/databases%2FBeatAreaList.db?alt=media&token=69c84fce-0be3-4c0d-b5d8-5ea62aec3967"));
+        enqueue = dm.enqueue(request);
+        request.setTitle("Updating Database");
+        request.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS,"BeatAreaList.db");
+    }
 
 
 }
