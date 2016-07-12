@@ -62,7 +62,7 @@ public class finish extends AppCompatActivity {
 
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
-        Plan= prefs.getString("Plan", "");
+        Plan= prefs.getString("TopicsDiscussed", "");
         Station= prefs.getString("Station", "");
         Beat= prefs.getString("Beat", "");
         ASM= prefs.getString("ASM", "");

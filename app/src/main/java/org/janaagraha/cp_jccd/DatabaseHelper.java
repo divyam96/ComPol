@@ -30,4 +30,6 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         return c;
 
     }
+
+
 }

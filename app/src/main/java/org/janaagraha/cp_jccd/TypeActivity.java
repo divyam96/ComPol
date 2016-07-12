@@ -23,6 +23,7 @@ public class TypeActivity extends AppCompatActivity {
     public static StringBuilder Topics = new StringBuilder();
     public EditText OthersBox;
     public EditText OtherPlan;
+    public String Plan;
     public static RadioButton otherButton;
     public static Spinner activityView;
     public static final String MY_PREFS_NAME = "MyPrefsFile";
@@ -105,9 +106,12 @@ public class TypeActivity extends AppCompatActivity {
                     ActivityType = OthersBox.getText().toString();
                 }
 
+                Plan = Topics.toString();
                 Toast.makeText(getApplicationContext(), "You have selected " + ActivityType + " and " + Topics.toString(), Toast.LENGTH_LONG).show();
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE).edit();
                 editor.putString("ActivityType",ActivityType);
+                editor.commit();
+                editor.putString("TopicsDiscussed", Plan);
                 editor.commit();
                 Intent intent_to_screen4 = new Intent(v.getContext(),PostActivity.class);
                 startActivity(intent_to_screen4);
