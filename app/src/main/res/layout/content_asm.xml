@@ -66,5 +66,17 @@
         android:layout_toRightOf="@+id/textView_ASM"
         android:layout_toEndOf="@+id/textView_ASM" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView4"
+        android:onClick="refresh_ASMnames"
+        android:src="@drawable/ic_action_refresh"
+        android:layout_below="@+id/textView_ASM"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp" />
+
 
 </RelativeLayout>

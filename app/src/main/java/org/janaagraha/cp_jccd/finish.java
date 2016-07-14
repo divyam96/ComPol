@@ -8,12 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.firebase.client.Firebase;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
-
 
 
 public class finish extends AppCompatActivity {
@@ -24,6 +18,7 @@ public class finish extends AppCompatActivity {
     public static String Comments;
     public EditText editText;
     public EditText editText1;
+    public String DateSet;
     public String Station;
     public String Beat;
     public String ASM;
@@ -58,46 +53,12 @@ public class finish extends AppCompatActivity {
         editor.commit();
 
 
-
-
-
-        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
-        Plan= prefs.getString("TopicsDiscussed", "");
-        Station= prefs.getString("Station", "");
-        Beat= prefs.getString("Beat", "");
-        ASM= prefs.getString("ASM", "");
-        OfficerName= prefs.getString("OfficerName", "");
-        ActivityType=prefs.getString("ActivityType", "");
-        PointsDiscussed= prefs.getString("PointsDiscussed", "");
-
-        Firebase.setAndroidContext(v.getContext());
-
-        Firebase ref = new Firebase(Config.FIREBASE_URL);
-        Firebase DataRef = ref.child("Report");
-
-        Map<String, String> AllData = new HashMap<>();
-
-        AllData.put("PoliceStation", Station);
-        AllData.put("Beat", Beat);
-        AllData.put("ASM", ASM);
-        AllData.put("PoliceOfficer", OfficerName);
-        AllData.put("ActivityType", ActivityType);
-        AllData.put("TopicsDiscussed", Plan);
-        AllData.put("PointsOfDiscussionWithASM",PointsDiscussed);
-        AllData.put("Number of Attendees",prefs.getString("NumberOfAttendees",""));
-        AllData.put("Comments",prefs.getString("Comments",""));
-
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
-        DataRef.push().setValue(AllData);
-
-
         editor.putInt("count_images", 0);
         editor.commit();
 
 
-        StopGps();
-
+        Intent popIntent = new Intent(v.getContext(),FinalPopUp.class);
+        startActivity(popIntent);
 
     }
 

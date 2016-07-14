@@ -84,8 +84,18 @@
         <activity
             android:name=".MetASMActivity"
             android:label="@string/title_activity_met_asm"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DatePickerActivity"
+            android:label="@string/title_activity_date_picker"
+            android:parentActivityName=".Menu"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.janaagraha.cp_jccd.Menu" />
+        </activity>
+        <activity android:name=".FinalPopUp">
+        </activity>
     </application>
 
 </manifest>

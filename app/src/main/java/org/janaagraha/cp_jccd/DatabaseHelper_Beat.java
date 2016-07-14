@@ -1,11 +1,14 @@
 package org.janaagraha.cp_jccd;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
+import java.util.HashMap;
 
 public class DatabaseHelper_Beat extends SQLiteAssetHelper {
     private static final String DATABASE_NAME = "BeatAreaList.db";
@@ -32,5 +35,23 @@ public class DatabaseHelper_Beat extends SQLiteAssetHelper {
         c.moveToFirst();
         return c;
 
+    }
+    public void insertBeat(HashMap<String, String> queryValues) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("BeatNumber", queryValues.get("BeatNumber"));
+        values.put("Stations", queryValues.get("stationsName"));
+        //database.insert("BeatList", null, values);
+        values.get("Stations");
+        Cursor beats = getBeats();
+        for(beats.moveToFirst();!beats.isAfterLast();beats.moveToNext()){
+            if(beats.getString(0).equals(values.get("BeatNumber"))){
+                database.update("BeatList",values,beats.getString(1)+","+values.get("Stations"),null);
+            }
+        }
+
+        //database.update("BeatList",values,"")
+        database.close();
     }
 }
