@@ -27,8 +27,8 @@ public class Menu extends AppCompatActivity {
 
  public void PreEvent(View v){
 
-     Intent intent_to_StationActivity = new Intent(v.getContext(),StationActivity.class);
-     startActivity(intent_to_StationActivity);
+     Intent intent_to_DatePickerActivity = new Intent(v.getContext(),DatePickerActivity.class);
+     startActivity(intent_to_DatePickerActivity);
 
 
 

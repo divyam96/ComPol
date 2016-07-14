@@ -1,11 +1,14 @@
 package org.janaagraha.cp_jccd;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
+import java.util.HashMap;
 
 public class Database_ASM extends SQLiteAssetHelper {
     private static final String DATABASE_NAME = "ASMnames.db";
@@ -37,5 +40,16 @@ public class Database_ASM extends SQLiteAssetHelper {
         c.moveToFirst();
         return c;
 
+    }
+
+    public void insertASM(HashMap<String, String> queryValues) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        //values.put("userId", queryValues.get("userId"));
+        values.put("NAMES", queryValues.get("asmName"));
+        String str = queryValues.get("StationName").trim()+"_BEAT"+queryValues.get("BeatNumber").trim();
+        values.put("ID",str);
+        database.insert("ASMtable", null, values);
+        database.close();
     }
 }

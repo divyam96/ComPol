@@ -29,10 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Spinner_Station"
-        android:layout_below="@+id/Select_Station"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="37dp" />
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -45,5 +44,15 @@
         android:layout_alignEnd="@+id/Spinner_Station"
         android:background="#000000"
         android:textColor="#ffffff" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:onClick="refresh_cpStationList"
+        android:layout_below="@+id/Select_Station"
+        android:layout_alignRight="@+id/Spinner_Station"
+        android:layout_alignEnd="@+id/Spinner_Station"
+        android:src="@drawable/ic_action_refresh" />
 
 </RelativeLayout>
