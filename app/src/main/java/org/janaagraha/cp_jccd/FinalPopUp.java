@@ -111,7 +111,8 @@ public class FinalPopUp extends finish{
         AllData.put("ActivityType",prefs.getString("ActivityType", "") );
         AllData.put("TopicsDiscussed",prefs.getString("TopicsDiscussed", "") );
         AllData.put("PointsOfDiscussionWithASM",prefs.getString("PointsDiscussed", ""));
-        AllData.put("Number of Attendees",prefs.getString("NumberOfAttendees", ""));
+        AllData.put("Number of Students",prefs.getString("NumberOfStudents", ""));
+        AllData.put("Number of Citizens",prefs.getString("NumberOfCitizens", ""));
         AllData.put("Comments", prefs.getString("Comments", ""));
 
         DataRef.push().setValue(AllData);

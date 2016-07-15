@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Database_ASM extends SQLiteAssetHelper {
@@ -45,11 +46,36 @@ public class Database_ASM extends SQLiteAssetHelper {
     public void insertASM(HashMap<String, String> queryValues) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        //values.put("userId", queryValues.get("userId"));
-        values.put("NAMES", queryValues.get("asmName"));
-        String str = queryValues.get("StationName").trim()+"_BEAT"+queryValues.get("BeatNumber").trim();
-        values.put("ID",str);
-        database.insert("ASMtable", null, values);
+        Cursor checker = getASM();
+        ArrayList<String> checkArray = new ArrayList<>();
+        for(checker.moveToFirst();!checker.isAfterLast();checker.moveToNext()){
+            checkArray.add(checker.getString(1));
+        }
+
+        if(checkArray.contains(queryValues.get("asmName"))){
+
+        }
+        else{
+            values.put("NAMES", queryValues.get("asmName"));
+            String str = queryValues.get("StationName").trim()+"_BEAT"+queryValues.get("BeatNumber").trim();
+            values.put("ID", str);
+            database.insert("ASMtable", null, values);
+        }
+
+        database.close();
+    }
+    public void deleteASM(HashMap<String, String> queryValues) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor checker = getASM();
+        ArrayList<String> checkArray = new ArrayList<>();
+        for(checker.moveToFirst();!checker.isAfterLast();checker.moveToNext()){
+            checkArray.add(checker.getString(1));
+        }
+
+        if(checkArray.contains(queryValues.get("asmName"))){
+            database.execSQL("DELETE FROM ASMtable WHERE NAMES = "+"\'"+queryValues.get("asmName")+"\'");
+        }
+
         database.close();
     }
 }
