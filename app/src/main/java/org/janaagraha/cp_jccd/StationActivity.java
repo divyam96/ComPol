@@ -120,7 +120,7 @@ public class StationActivity extends AppCompatActivity {
         // Show ProgressBar
        // prgDialog.show();
         // Make Http call to getusers.php
-        client.post("http://10.0.2.2/cpStationList/getstations.php", params, new AsyncHttpResponseHandler() {
+        client.post("http://gpstracker.janaagraha.in/DatabaseUpdate/cpStationList/getstations.php", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody)   {
                 // Hide ProgressBar
@@ -154,8 +154,6 @@ public class StationActivity extends AppCompatActivity {
     }
 
     public void updateSQLite(String response){
-        ArrayList<HashMap<String, String>> usersynclist;
-        usersynclist = new ArrayList<>();
         // Create GSON object
         Gson gson = new GsonBuilder().create();
         try {
@@ -178,14 +176,7 @@ public class StationActivity extends AppCompatActivity {
                    // queryValues.put("BeatNumber",obj.get("BeatNumber").toString());
                     // Insert User into SQLite DB
                     db.insertStation(queryValues);
-                    HashMap<String, String> map = new HashMap<>();
-                    // Add status for each User in Hashmap
-                    map.put("Id", obj.get("stationsId").toString());
-                    map.put("status", "1");
-                    usersynclist.add(map);
                 }
-                // Inform Remote MySQL DB about the completion of Sync activity by passing Sync status of Users
-                updateMySQLSyncSts(gson.toJson(usersynclist));
                 // Reload the Main Activity
                 reloadActivity();
             }
@@ -194,28 +185,6 @@ public class StationActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-    // Method to inform remote MySQL DB about completion of Sync activity
-    public void updateMySQLSyncSts(String json) {
-        System.out.println(json);
-        AsyncHttpClient client = new AsyncHttpClient();
-        RequestParams params = new RequestParams();
-        params.put("syncsts", json);
-        // Make Http call to updatesyncsts.php with JSON parameter which has Sync statuses of Users
-        client.post("http://10.0.2.2/cpStationList/updatesyncsts.php", params, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Toast.makeText(getApplicationContext(), "MySQL DB has been informed about Sync activity", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getApplicationContext(), "Error Occured", Toast.LENGTH_LONG).show();
-            }
-
-        });
-    }
-
     // Reload MainActivity
     public void reloadActivity() {
         Intent objIntent = new Intent(getApplicationContext(), StationActivity.class);

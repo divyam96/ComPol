@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DatabaseHelper extends SQLiteAssetHelper {
@@ -37,10 +38,20 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     public void insertStation(HashMap<String, String> queryValues) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        //values.put("userId", queryValues.get("userId"));
-        values.put("Police_Station_Name", queryValues.get("stationsName"));
-        values.put("No_of_Beats",queryValues.get("BeatNumber"));
-        database.insert("policestationscp", null, values);
+        Cursor checker = getStations();
+        ArrayList<String> checkArray = new ArrayList<>();
+        for(checker.moveToFirst();!checker.isAfterLast();checker.moveToNext()){
+            checkArray.add(checker.getString(1));
+        }
+
+        if(checkArray.contains(queryValues.get("stationsName"))){
+
+        }
+        else{
+            values.put("Police_Station_Name", queryValues.get("stationsName"));
+            database.insert("policestationscp", null, values);
+        }
+
         database.close();
     }
 

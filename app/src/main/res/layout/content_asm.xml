@@ -66,17 +66,29 @@
         android:layout_toRightOf="@+id/textView_ASM"
         android:layout_toEndOf="@+id/textView_ASM" />
 
-    <ImageView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView4"
+        android:text="Check for new ASM"
         android:onClick="refresh_ASMnames"
-        android:src="@drawable/ic_action_refresh"
-        android:layout_below="@+id/textView_ASM"
+        android:id="@+id/button6"
+        android:background="#000000"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/spinner_ASM"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginStart="37dp" />
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check for deleted ASM"
+        android:onClick="refresh_ASMdeleted"
+        android:id="@+id/button7"
+        android:textColor="#ffffff"
+        android:background="#000000"
+        android:layout_below="@+id/button6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

@@ -15,7 +15,7 @@
         android:ems="10"
         android:id="@+id/editText"
         android:background="#FFFFFF"
-        android:layout_below="@+id/textView2"
+        android:layout_above="@+id/upload_pics"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -36,9 +36,9 @@
         android:text="Finish"
         android:id="@+id/upload_pics"
         android:onClick="finish_event"
+        android:layout_marginBottom="35dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,10 +47,9 @@
         android:text="Final Comments:"
         android:id="@+id/textView2"
         android:textStyle="bold"
-        android:layout_below="@+id/editText2"
+        android:layout_above="@+id/editText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="39dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:textStyle="bold"
@@ -71,10 +70,35 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No of attendees:"
+        android:text="No of Students:"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Number of Citizens:"
+        android:textStyle="bold"
+        android:id="@+id/textView15"
+        android:layout_marginTop="56dp"
+        android:layout_below="@+id/editText2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText11"
+        android:textStyle="bold"
+        android:width="40dp"
+        android:background="#FFFFFF"
+        android:inputType="number"
+        android:minLines="1"
+        android:layout_below="@+id/textView15"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2" />
 </RelativeLayout>

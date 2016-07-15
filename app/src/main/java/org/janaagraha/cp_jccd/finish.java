@@ -14,10 +14,12 @@ public class finish extends AppCompatActivity {
 
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     public static final String MY_PREFS_NAME2 = "MyGpsFile";
-    public static String NumberOfAttendees;
+    public static String NumberOfStudents;
+    public static String NumberOfCitizens;
     public static String Comments;
     public EditText editText;
     public EditText editText1;
+    public EditText editText2;
     public String DateSet;
     public String Station;
     public String Beat;
@@ -32,22 +34,26 @@ public class finish extends AppCompatActivity {
         Log.d("FirebaseUI: ", "New activity");
         setContentView(R.layout.finishing_activity);
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
-        NumberOfAttendees = prefs.getString("NumberOfAttendees", null);
+        NumberOfStudents = prefs.getString("NumberOfStudents", null);
+        NumberOfCitizens = prefs.getString("NumberOfCitizens", null);
         Comments = prefs.getString("Comments",null);
         editText = (EditText) findViewById(R.id.editText2);
         editText1 = (EditText) findViewById(R.id.editText);
-
+        editText2 = (EditText) findViewById(R.id.editText11);
 
     }
 
     public void finish_event(View v){
 
 
-        NumberOfAttendees = editText.getText().toString();
+        NumberOfStudents = editText.getText().toString();
+        NumberOfCitizens = editText2.getText().toString();
         Comments = editText1.getText().toString();
 
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE).edit();
-        editor.putString("NumberOfAttendees", NumberOfAttendees);
+        editor.putString("NumberOfStudents", NumberOfStudents);
+        editor.commit();
+        editor.putString("NumberOfCitizens", NumberOfCitizens);
         editor.commit();
         editor.putString("Comments", Comments);
         editor.commit();

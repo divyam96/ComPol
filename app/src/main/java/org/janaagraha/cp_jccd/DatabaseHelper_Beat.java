@@ -1,6 +1,5 @@
 package org.janaagraha.cp_jccd;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +7,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DatabaseHelper_Beat extends SQLiteAssetHelper {
@@ -26,8 +26,6 @@ public class DatabaseHelper_Beat extends SQLiteAssetHelper {
         String [] sqlSelect = {"0 _id", "Beat_Number"};
         String sqlTables = "BeatList";
         String selection = "Stations LIKE '%"+stationString.trim()+"%'";
-        // String[] selectionArgs = {MainActivity.Station};
-
         qb.setTables(sqlTables);
         Cursor c = qb.query(db, sqlSelect, selection, null,
                 null, null, null);
@@ -38,20 +36,26 @@ public class DatabaseHelper_Beat extends SQLiteAssetHelper {
     }
     public void insertBeat(HashMap<String, String> queryValues) {
         SQLiteDatabase database = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put("BeatNumber", queryValues.get("BeatNumber"));
-        values.put("Stations", queryValues.get("stationsName"));
-        //database.insert("BeatList", null, values);
-        values.get("Stations");
-        Cursor beats = getBeats();
-        for(beats.moveToFirst();!beats.isAfterLast();beats.moveToNext()){
-            if(beats.getString(0).equals(values.get("BeatNumber"))){
-                database.update("BeatList",values,beats.getString(1)+","+values.get("Stations"),null);
-            }
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        qb.setTables("BeatList");
+        String [] sqlSelect = {"0 _id","Beat_Number","Stations"};
+        Cursor checker = qb.query(database,sqlSelect,null,null,null,null,null);
+        ArrayList<String> checkArrayStations = new ArrayList<>();
+        ArrayList<String> checkArray = new ArrayList<>();
+        for(checker.moveToFirst();!checker.isAfterLast();checker.moveToNext()){
+            checkArray.add(checker.getString(1));
+        }
+        for(checker.moveToFirst();!checker.isAfterLast();checker.moveToNext()){
+            checkArrayStations.add(checker.getString(2));
         }
 
-        //database.update("BeatList",values,"")
+        for(int i=1;i<=checker.getCount();i++){
+           if((checkArray.get(i-1).equals(queryValues.get("BeatNumber").trim())) && !(checkArrayStations.get(i-1).contains(queryValues.get("stationsName")))) {
+               String str = checkArrayStations.get(i - 1).concat("," + queryValues.get("stationsName"));
+               database.execSQL("UPDATE BeatList SET Stations = \"" + str + "\"" + " WHERE rowid = " + i);
+           }
+        }
+
         database.close();
     }
 }
