@@ -48,6 +48,12 @@ public class CameraActivity extends AppCompatActivity{
     private static final int REQUEST_CODE_CAPTURE_IMAGE = 1;
     int count_images;
 
+    String DateSet;
+    String Station;
+    String Beat;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,11 @@ public class CameraActivity extends AppCompatActivity{
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         count_images= prefs.getInt("count_images", 0);
+
+        Station= prefs.getString("Station", "");
+        Beat= prefs.getString("Beat", "");
+        DateSet = prefs.getString("Date","");
+
     }
 
 
@@ -98,7 +109,7 @@ public class CameraActivity extends AppCompatActivity{
 
         StorageReference storageRef = storage.getReferenceFromUrl("gs://compol-b0515.appspot.com");
 
-        StorageReference TestImagesRef = storageRef.child("Data/test" + count_images + ".jpg");
+        StorageReference TestImagesRef = storageRef.child("Data/" + Station + "/" + Beat+"/"+ DateSet+"_" + count_images + ".jpg");
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -199,8 +210,7 @@ public class CameraActivity extends AppCompatActivity{
 
         StorageReference storageRef = storage.getReferenceFromUrl("gs://compol-b0515.appspot.com");
 
-        StorageReference TestImagesRef = storageRef.child("Data/test" + count_images + ".jpg");
-
+        StorageReference TestImagesRef = storageRef.child("Data/" + Station + "/" + Beat+"/"+ DateSet+"_" + count_images + ".jpg");
         // If there's an upload in progress, save the reference so you can query it later
         if (TestImagesRef != null) {
             outState.putString("reference", TestImagesRef.toString());

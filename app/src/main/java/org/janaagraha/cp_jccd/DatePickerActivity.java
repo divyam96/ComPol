@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -49,6 +50,12 @@ public class DatePickerActivity extends AppCompatActivity {
                 // Month is 0 based, just add 1
                 .append(month + 1).append("-").append(day).append("-")
                 .append(year).append(" "));
+
+
+        Date = new StringBuilder().append(month + 1)
+                .append("-").append(day).append("-").append(year)
+                .append(" ").toString();
+        Output.setText(Date);
 
         // Button listener to show date picker dialog
 
@@ -98,8 +105,10 @@ public class DatePickerActivity extends AppCompatActivity {
 
     public  void MoveToStationActivity(View v){
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE).edit();
+        Log.i("date is", Date);
         editor.putString("Date",Date);
         editor.commit();
+        Log.i("jkgkh", "bkjgk");
         Intent intent_to_StationActivity = new Intent(v.getContext(),StationActivity.class);
         startActivity(intent_to_StationActivity);
     }
