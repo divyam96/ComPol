@@ -31,7 +31,7 @@ public class Database_ASM extends SQLiteAssetHelper {
 
         String [] sqlSelect = {"0 _id", "NAMES"};
         String sqlTables = "ASMtable";
-        String selection = "ID LIKE '%"+stationString.trim()+"_"+beatString.trim()+"%'";
+        String selection = "ID LIKE '%"+stationString.trim()+"_"+beatString.trim()+"'";
         // String[] selectionArgs = {stationString,beatString};
 
         qb.setTables(sqlTables);

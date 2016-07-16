@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">CP_JCCD</string>
-    <string name="facebook_application_id" translatable="false">1146365068747469</string>
+    <string name="facebook_application_id" translatable="false">161135010973305</string>
 
-    <string name="default_upload_website">http://10.0.2.2:80//gpstracker/updatelocation.php</string>
+    <string name="default_upload_website">http://gpstracker.janaagraha.in/updatelocation.php</string>
 
     <string name="tracking_is_off">Tracking is Off</string>
     <string name="tracking_is_on">Tracking is On</string>

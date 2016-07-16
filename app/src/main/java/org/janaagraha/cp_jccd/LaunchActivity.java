@@ -100,7 +100,6 @@ private void firebase_login(){
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setProviders(
-                                AuthUI.EMAIL_PROVIDER,
                                 AuthUI.GOOGLE_PROVIDER,
                                 AuthUI.FACEBOOK_PROVIDER)
                         .build(),
